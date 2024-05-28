@@ -3,9 +3,9 @@
 require "./gem_config"
 
 Gem::Specification.new do |gem|
-  GemConfig.apply(gem, "nylas")
-  gem.summary = %(Gem for interacting with the Nylas API)
-  gem.description = %(Gem for interacting with the Nylas API.)
+  GemConfig.apply(gem, "nylas-legacy")
+  gem.summary = %(Gem for interacting with the Nylas API v2)
+  gem.description = %(Gem for interacting with the Nylas API v2.)
   gem.add_runtime_dependency "eventmachine", "~> 1.2.7"
   gem.add_runtime_dependency "faye-websocket", "~> 0.11.1"
   gem.add_runtime_dependency "rest-client", ">= 2.0", "< 3.0"
