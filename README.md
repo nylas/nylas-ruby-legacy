@@ -2,25 +2,9 @@
     <img src="https://brand.nylas.com/assets/downloads/logo_horizontal_png/Nylas-Logo-Horizontal-Blue_.png" alt="Aimeos logo" title="Aimeos" align="right" height="60" />
 </a>
 
-# Nylas Ruby SDK
+# Nylas Ruby SDK (Legacy/API v2)
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/nylas/nylas-ruby/CI)](https://github.com/nylas/nylas-ruby/actions/workflows/rspec.yml)
-[![codecov](https://codecov.io/gh/nylas/nylas-ruby/branch/main/graph/badge.svg?token=IKH0YMH4KA)](https://codecov.io/gh/nylas/nylas-ruby)
-
-The Nylas Communications Platform allows developers to quickly build features that connect to every inbox, calendar, and contacts book in the world. Nylas makes it easy to build an integration that can be completed in days, and provides pre-built security and compliance features, and a 99.9% guaranteed uptime. Integrations with the Nylas Communications Platform are secure, reliable, and easy to use and maintain.
-
-Nylas provides REST APIs for [Email](https://docs.nylas.com/docs/quickstart-email), [Calendar](https://docs.nylas.com/docs/quickstart-calendar), and [Contacts](https://docs.nylas.com/docs/quickstart-contacts), and the Ruby SDK is the quickest way to build your first integration using Ruby.
-
-This is the GitHub repository for the Nylas Ruby SDK and is primarily for anyone who wants to make contributions to the SDK or install it from source. If you are looking to use Ruby to access the Nylas Email, Calendar, or Contacts API you should refer to our official [Ruby](https://docs.nylas.com/docs/quickstart-ruby) [SDK Quickstart Guide](https://docs.nylas.com/docs/quickstart-ruby).
-
-Here are some additional resources to help you get started:
-
-- [Nylas SDK Tutorials](https://docs.nylas.com/docs/tutorials)
-- [Get Started with the Nylas Communications Platform](https://docs.nylas.com/docs/getting-started)
-- [Sign up for your Nylas developer account.](https://nylas.com/register)
-- [Nylas API Reference](https://docs.nylas.com/reference)
-
-If you have a question that needs an answer, please reach out to support@nylas.com to get help.
+This is the legacy version of the Nylas Ruby SDK, which supports the Nylas API v2. This version of the SDK is currently in maintenance mode and is supported for the purpose of assisting with migration to the new API v3. We recommend migrating and using the current [Nylas Ruby SDK](https://www.github.com/nylas/nylas-ruby) for the latest and greatest features.
 
 ## ⚙️ Install
 ### Prerequisites
@@ -34,7 +18,7 @@ We support Rails 4.2 and above. A more detailed compatibility list can be found 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'nylas'
+gem 'nylas-legacy'
 ```
 
 And then execute:
@@ -46,13 +30,13 @@ bundle
 To run scripts that use the Nylas Ruby SDK, install the nylas gem.
 
 ```bash
-gem install nylas
+gem install nylas-legacy
 ```
 
 To install the SDK from source, clone this repo and install with bundle.
 
 ```bash
-git clone https://github.com/nylas/nylas-ruby.git && cd nylas-ruby
+git clone https://github.com/nylas/nylas-ruby-legacy.git && cd nylas-ruby-legacy
 bundle install
 ```
 
@@ -84,7 +68,7 @@ Apple stopped bundling OpenSSL with MacOS 10.11. However, one of the dependencie
 ```bash
 sudo brew install openssl
 sudo brew link openssl --force
-gem install nylas
+gem install nylas-legacy
 ```
 
 ## ⚡️ Usage
