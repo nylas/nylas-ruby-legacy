@@ -12,7 +12,7 @@
 Gemspec/RequiredRubyVersion:
   Exclude:
     - 'nylas-streaming.gemspec'
-    - 'nylas.gemspec'
+    - 'nylas-legacy.gemspec'
 
 # Offense count: 9
 # Cop supports --auto-correct.
