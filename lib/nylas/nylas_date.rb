@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent Nylas's more complex Date Schema
   # @see https://docs.nylas.com/reference#contactsid
   class NylasDate

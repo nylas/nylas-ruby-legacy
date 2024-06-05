@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Nylas::Neural do
+describe NylasLegacy::Neural do
   describe "Clean Conversation" do
     let(:data) do
       [
@@ -32,7 +32,7 @@ describe Nylas::Neural do
     end
 
     it "Deserializes all the attributes into Ruby objects" do
-      api = instance_double(Nylas::API, execute: data)
+      api = instance_double(NylasLegacy::API, execute: data)
       neural = described_class.new(api: api)
       clean_conversation = neural.clean_conversation(["abc123"])
 
@@ -52,9 +52,9 @@ describe Nylas::Neural do
     end
 
     it "Sends the options in the body" do
-      api = instance_double(Nylas::API, execute: data)
+      api = instance_double(NylasLegacy::API, execute: data)
       neural = described_class.new(api: api)
-      options = Nylas::NeuralMessageOptions.new(
+      options = NylasLegacy::NeuralMessageOptions.new(
         ignore_links: false,
         ignore_images: false,
         ignore_tables: false,
@@ -79,8 +79,8 @@ describe Nylas::Neural do
     end
 
     it "Parses the image correctly" do
-      api = instance_double(Nylas::API, execute: data)
-      files = instance_double(Nylas::Collection, find: Nylas::File.new(id: "file123"))
+      api = instance_double(NylasLegacy::API, execute: data)
+      files = instance_double(NylasLegacy::Collection, find: NylasLegacy::File.new(id: "file123"))
       allow(api).to receive(:files).and_return(files)
       neural = described_class.new(api: api)
       clean_conversation = neural.clean_conversation(["abc123"])
@@ -104,7 +104,7 @@ describe Nylas::Neural do
     end
 
     it "Deserializes the message request into Ruby objects" do
-      api = instance_double(Nylas::API, execute: [data])
+      api = instance_double(NylasLegacy::API, execute: [data])
       neural = described_class.new(api: api)
       sentiment = neural.sentiment_analysis_message(["abc123"])
 
@@ -125,7 +125,7 @@ describe Nylas::Neural do
     end
 
     it "Deserializes the text request into Ruby objects" do
-      api = instance_double(Nylas::API, execute: data)
+      api = instance_double(NylasLegacy::API, execute: data)
       neural = described_class.new(api: api)
       sentiment = neural.sentiment_analysis_text("This is some text")
 
@@ -196,7 +196,7 @@ describe Nylas::Neural do
     end
 
     it "Deserializes all the attributes into Ruby objects" do
-      api = instance_double(Nylas::API, execute: data)
+      api = instance_double(NylasLegacy::API, execute: data)
       neural = described_class.new(api: api)
       signature = neural.extract_signature(["abc123"])
 
@@ -223,9 +223,9 @@ describe Nylas::Neural do
     end
 
     it "Sends the options in the body" do
-      api = instance_double(Nylas::API, execute: data)
+      api = instance_double(NylasLegacy::API, execute: data)
       neural = described_class.new(api: api)
-      options = Nylas::NeuralMessageOptions.new(
+      options = NylasLegacy::NeuralMessageOptions.new(
         ignore_links: false,
         ignore_images: false,
         ignore_tables: false,
@@ -251,7 +251,7 @@ describe Nylas::Neural do
     end
 
     it "Converts signature contact object to a Nylas contact object" do
-      api = instance_double(Nylas::API, execute: data)
+      api = instance_double(NylasLegacy::API, execute: data)
       neural = described_class.new(api: api)
       signature = neural.extract_signature(["abc123"])
       contact = signature[0].contacts.to_contact_object
@@ -300,7 +300,7 @@ describe Nylas::Neural do
     end
 
     it "Deserializes all the attributes into Ruby objects" do
-      api = instance_double(Nylas::API, execute: [data])
+      api = instance_double(NylasLegacy::API, execute: [data])
       neural = described_class.new(api: api)
       categorize = neural.categorize(["abc123"])
 
@@ -321,7 +321,7 @@ describe Nylas::Neural do
     end
 
     it "Re-categorizes the message" do
-      api = instance_double(Nylas::API, execute: [data])
+      api = instance_double(NylasLegacy::API, execute: [data])
       neural = described_class.new(api: api)
       allow(api).to receive(:neural).and_return(neural)
       categorize = neural.categorize(["abc123"])
@@ -350,7 +350,7 @@ describe Nylas::Neural do
     end
 
     it "Deserializes all the attributes into Ruby objects" do
-      api = instance_double(Nylas::API, execute: data)
+      api = instance_double(NylasLegacy::API, execute: data)
       neural = described_class.new(api: api)
       ocr = neural.ocr_request("abc123")
 

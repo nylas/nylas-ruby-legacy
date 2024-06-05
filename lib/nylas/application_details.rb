@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent a Nylas Application Detail object.
   # @see https://developer.nylas.com/docs/api/#get/a/client_id
   class ApplicationDetail

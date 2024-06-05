@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby representatin of a Nylas Message object
   # @see https://docs.nylas.com/reference#messages
   class Message

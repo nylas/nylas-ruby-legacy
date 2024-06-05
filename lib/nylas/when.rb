@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   require "tzinfo"
 
   # Structure to represent all the Nylas time types.

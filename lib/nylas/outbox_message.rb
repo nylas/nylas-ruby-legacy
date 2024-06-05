@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby representation of a Nylas Outbox Message object
   # @see https://developer.nylas.com/docs/api/#post/v2/outbox
   class OutboxMessage < Draft

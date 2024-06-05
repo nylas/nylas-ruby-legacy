@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent a the Signature Extraction Schema.
   # @see https://developer.nylas.com/docs/intelligence/signature-extraction/#signature-feedback-response
   class NeuralSignatureExtraction < Message

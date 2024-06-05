@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby representation of a the Nylas Scheduler API
   # @see https://developer.nylas.com/docs/api/scheduler/#overview
   class Scheduler

@@ -2,14 +2,14 @@
 
 require "spec_helper"
 
-describe Nylas::SearchCollection do
+describe NylasLegacy::SearchCollection do
   let(:api) { FakeAPI.new }
 
   describe "#count" do
     it "Returns an enumerable for a single page of results, filtered by `offset` and `limit` and `where`" do
       allow(api).to receive(:execute)
         .with(
-          auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+          auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
           method: :get,
           path: "/collection/search",
           query: { limit: 100, offset: 0 },

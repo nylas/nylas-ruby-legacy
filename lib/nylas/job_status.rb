@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby representation of a Nylas Job Status object
   # @see https://developer.nylas.com/docs/api/#tag--Job-Status
   class JobStatus

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # The constraints a particular GET request will include in their query params
   class Constraints
     attr_accessor :where, :limit, :offset, :view, :per_page, :accept

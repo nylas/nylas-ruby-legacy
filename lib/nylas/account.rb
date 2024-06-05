@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Representation of the accounts for Account management purposes.
   # @see https://docs.nylas.com/reference#account-management
   class Account

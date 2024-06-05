@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent a the Component Schema.
   class Component
     include Model

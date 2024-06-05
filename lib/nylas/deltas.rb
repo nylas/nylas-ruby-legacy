@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby object to represent a collection of changes. Used both when receiving a webhook, as well as the
   # deltas API.
   # @see https://docs.nylas.com/reference#receiving-notifications

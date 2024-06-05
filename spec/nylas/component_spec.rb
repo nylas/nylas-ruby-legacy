@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-describe Nylas::Component do
+describe NylasLegacy::Component do
   describe ".from_json" do
     it "Deserializes all the attributes into Ruby objects" do
-      client = Nylas::HttpClient.new(
+      client = NylasLegacy::HttpClient.new(
         app_id: "not-real",
         app_secret: "also-not-real",
         access_token: "seriously-unreal"
       )
-      api = Nylas::API.new(client: client)
+      api = NylasLegacy::API.new(client: client)
       data = {
         id: "abc-123",
         account_id: "account-123",
@@ -45,12 +45,12 @@ describe Nylas::Component do
 
   describe "saving" do
     it "POST with no ID set" do
-      client = Nylas::HttpClient.new(
+      client = NylasLegacy::HttpClient.new(
         app_id: "not-real",
         app_secret: "also-not-real",
         access_token: "seriously-unreal"
       )
-      api = Nylas::API.new(client: client)
+      api = NylasLegacy::API.new(client: client)
       data = {
         account_id: "account-123",
         name: "test-component",
@@ -71,7 +71,7 @@ describe Nylas::Component do
       component.save
 
       expect(api).to have_received(:execute).with(
-        auth_method: Nylas::HttpClient::AuthMethod::BASIC,
+        auth_method: NylasLegacy::HttpClient::AuthMethod::BASIC,
         method: :post,
         path: "/component/not-real",
         payload: JSON.dump(
@@ -90,12 +90,12 @@ describe Nylas::Component do
     end
 
     it "PUT with ID set" do
-      client = Nylas::HttpClient.new(
+      client = NylasLegacy::HttpClient.new(
         app_id: "not-real",
         app_secret: "also-not-real",
         access_token: "seriously-unreal"
       )
-      api = Nylas::API.new(client: client)
+      api = NylasLegacy::API.new(client: client)
       data = {
         id: "abc-123",
         account_id: "account-123",
@@ -117,7 +117,7 @@ describe Nylas::Component do
       scheduler.save
 
       expect(api).to have_received(:execute).with(
-        auth_method: Nylas::HttpClient::AuthMethod::BASIC,
+        auth_method: NylasLegacy::HttpClient::AuthMethod::BASIC,
         method: :put,
         path: "/component/not-real/abc-123",
         payload: JSON.dump(

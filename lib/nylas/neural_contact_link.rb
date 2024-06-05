@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent the "Link" object in the Neural API's Signature Extraction Contact object
   # @see https://developer.nylas.com/docs/intelligence/signature-extraction/#parse-signature-response
   class NeuralContactLink

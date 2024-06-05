@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   require "yajl"
   require "base64"
 
@@ -54,7 +54,7 @@ module Nylas
     # @param access_token [String] (Optional) Your users access token.
     # @param api_server [String] (Optional) Which Nylas API Server to connect to. Only change this if
     #                            you're using a self-hosted Nylas instance.
-    # @return [Nylas::HttpClient]
+    # @return [NylasLegacy::HttpClient]
     def initialize(app_id:, app_secret:, access_token: nil, api_server: "https://api.nylas.com")
       unless api_server.include?("://")
         raise "When overriding the Nylas API server address, you must include https://"
@@ -66,7 +66,7 @@ module Nylas
       @app_id = app_id
     end
 
-    # @return [Nylas::HttpClient[]
+    # @return [NylasLegacy::HttpClient[]
     def as(access_token)
       HttpClient.new(app_id: app_id, access_token: access_token,
                      app_secret: app_secret, api_server: api_server)
@@ -103,7 +103,7 @@ module Nylas
 
         begin
           response = parse_response(response) if content_type == "application/json"
-        rescue Nylas::JsonParseError
+        rescue NylasLegacy::JsonParseError
           handle_failed_response(result: result, response: response)
           raise
         end
@@ -181,7 +181,7 @@ module Nylas
         "X-Nylas-API-Wrapper" => "ruby",
         "X-Nylas-Client-Id" => @app_id,
         "Nylas-API-Version" => SUPPORTED_API_VERSION,
-        "User-Agent" => "Nylas Ruby SDK #{Nylas::VERSION} - #{RUBY_VERSION}",
+        "User-Agent" => "Nylas Ruby SDK #{NylasLegacy::VERSION} - #{RUBY_VERSION}",
         "Content-type" => "application/json",
         "Accept" => "application/json"
       }
@@ -192,7 +192,7 @@ module Nylas
 
       Yajl::Parser.new(symbolize_names: true).parse(response)
     rescue Yajl::ParseError
-      raise Nylas::JsonParseError
+      raise NylasLegacy::JsonParseError
     end
     inform_on :parse_response, level: :debug, also_log: { result: true }
 

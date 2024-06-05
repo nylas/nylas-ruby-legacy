@@ -3,7 +3,7 @@
 require "spec_helper"
 require "webmock/rspec"
 
-describe Nylas::HttpClient do
+describe NylasLegacy::HttpClient do
   let(:full_json) do
     '{"snippet":"\u26a1\ufe0f Some text \ud83d","starred":false,"subject":"Updates"}'
   end
@@ -17,7 +17,7 @@ describe Nylas::HttpClient do
 
     it "raises if the JSON is unable to be deserialized" do
       nylas = described_class.new(app_id: "id", app_secret: "secret", access_token: "token")
-      expect { nylas.parse_response("{{") }.to raise_error(Nylas::JsonParseError)
+      expect { nylas.parse_response("{{") }.to raise_error(NylasLegacy::JsonParseError)
     end
   end
 
@@ -38,7 +38,7 @@ describe Nylas::HttpClient do
       stub_request(:get, "https://api.nylas.com/contacts/1234")
         .to_return(status: 200, body: "abc", headers: { "Content-Type" => "Application/Json" })
 
-      expect { nylas.execute(method: :get, path: "/contacts/1234") }.to raise_error(Nylas::JsonParseError)
+      expect { nylas.execute(method: :get, path: "/contacts/1234") }.to raise_error(NylasLegacy::JsonParseError)
     end
 
     it "still throws an API error if content-type == application/json but response is not a json" do
@@ -47,7 +47,7 @@ describe Nylas::HttpClient do
       stub_request(:get, "https://api.nylas.com/contacts/1234")
         .to_return(status: 400, body: "abc", headers: { "Content-Type" => "Application/Json" })
 
-      expect { nylas.execute(method: :get, path: "/contacts/1234") }.to raise_error(Nylas::InvalidRequest)
+      expect { nylas.execute(method: :get, path: "/contacts/1234") }.to raise_error(NylasLegacy::InvalidRequest)
     end
 
     it "skips parsing when content-type is not JSON" do
@@ -91,21 +91,21 @@ describe Nylas::HttpClient do
 
   describe "HTTP errors" do
     http_codes_errors = {
-      400 => Nylas::InvalidRequest,
-      401 => Nylas::UnauthorizedRequest,
-      402 => Nylas::MessageRejected,
-      403 => Nylas::AccessDenied,
-      404 => Nylas::ResourceNotFound,
-      405 => Nylas::MethodNotAllowed,
-      410 => Nylas::ResourceRemoved,
-      418 => Nylas::TeapotError,
-      422 => Nylas::MailProviderError,
-      429 => Nylas::SendingQuotaExceeded,
-      500 => Nylas::InternalError,
-      501 => Nylas::EndpointNotYetImplemented,
-      502 => Nylas::BadGateway,
-      503 => Nylas::ServiceUnavailable,
-      504 => Nylas::RequestTimedOut
+      400 => NylasLegacy::InvalidRequest,
+      401 => NylasLegacy::UnauthorizedRequest,
+      402 => NylasLegacy::MessageRejected,
+      403 => NylasLegacy::AccessDenied,
+      404 => NylasLegacy::ResourceNotFound,
+      405 => NylasLegacy::MethodNotAllowed,
+      410 => NylasLegacy::ResourceRemoved,
+      418 => NylasLegacy::TeapotError,
+      422 => NylasLegacy::MailProviderError,
+      429 => NylasLegacy::SendingQuotaExceeded,
+      500 => NylasLegacy::InternalError,
+      501 => NylasLegacy::EndpointNotYetImplemented,
+      502 => NylasLegacy::BadGateway,
+      503 => NylasLegacy::ServiceUnavailable,
+      504 => NylasLegacy::RequestTimedOut
     }
 
     http_codes_errors.each do |code, error|
@@ -151,7 +151,7 @@ describe Nylas::HttpClient do
         .to_return(status: 429, body: error_json, headers: error_headers)
 
       expect { nylas.execute(method: :get, path: "/contacts") }
-        .to raise_error(an_instance_of(Nylas::SendingQuotaExceeded)
+        .to raise_error(an_instance_of(NylasLegacy::SendingQuotaExceeded)
                          .and(having_attributes(
                                 rate_limit: 500,
                                 rate_limit_reset: 10

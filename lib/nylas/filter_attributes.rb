@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Methods to check and raise error if extra attributes are present
   class FilterAttributes
     def initialize(attributes:, allowed_attributes:)

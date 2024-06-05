@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Nylas::Model::Attributes do
+describe NylasLegacy::Model::Attributes do
   describe "#serialize_for_api" do
     it "rejects keys which are read_only" do
       test_json = {

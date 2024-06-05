@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Additional methods for some of Scheduler's other functionality
   # @see https://developer.nylas.com/docs/api/scheduler#overview
   class SchedulerCollection < Collection

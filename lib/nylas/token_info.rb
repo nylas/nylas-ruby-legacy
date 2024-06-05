@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent information about a Nylas access token.
   # @see https://developer.nylas.com/docs/api/#post/a/client_id/accounts/id/token-info
   class TokenInfo

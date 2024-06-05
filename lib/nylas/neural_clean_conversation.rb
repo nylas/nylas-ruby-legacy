@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent a the Neural Clean Conversations object.
   # @see https://developer.nylas.com/docs/intelligence/clean-conversations/#clean-conversation-response
   class NeuralCleanConversation < Message

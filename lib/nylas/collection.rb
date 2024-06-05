@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # An enumerable for working with index and search endpoints
   class Collection
     attr_accessor :model, :api, :constraints

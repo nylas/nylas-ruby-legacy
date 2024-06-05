@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Configuration settings for a Scheduler page
   # @see https://developer.nylas.com/docs/api/scheduler
   class SchedulerConfig

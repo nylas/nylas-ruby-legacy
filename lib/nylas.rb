@@ -120,7 +120,7 @@ require_relative "nylas/filter_attributes"
 require_relative "nylas/services/tunnel"
 # an SDK for interacting with the Nylas API
 # @see https://docs.nylas.com/reference
-module Nylas
+module NylasLegacy
   Types.registry[:account] = Types::ModelType.new(model: Account)
   Types.registry[:calendar] = Types::ModelType.new(model: Calendar)
   Types.registry[:contact] = Types::ModelType.new(model: Contact)

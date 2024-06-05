@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Class containing methods for accessing Neural API features.
   # @see https://developer.nylas.com/docs/intelligence/
   class Neural

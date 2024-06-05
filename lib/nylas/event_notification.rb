@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent the Event Notification object
   # @see https://developer.nylas.com/docs/connectivity/calendar/event-notifications
   class EventNotification

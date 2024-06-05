@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent the Neural Categorize object.
   # @see https://developer.nylas.com/docs/intelligence/categorizer/#categorize-message-response
   class Categorize

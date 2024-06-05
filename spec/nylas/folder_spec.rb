@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Nylas::Folder do
+describe NylasLegacy::Folder do
   it "is not filterable" do
     expect(described_class).not_to be_filterable
   end
@@ -23,7 +23,7 @@ describe Nylas::Folder do
 
   describe "API operations" do
     it "sends a POST when saving a new folder" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
       json = JSON.dump(display_name: "All Mail", name: "all")
       folder = described_class.from_json(json, api: api)
       allow(api).to receive(:execute).and_return({})
@@ -31,7 +31,7 @@ describe Nylas::Folder do
       folder.save
 
       expect(api).to have_received(:execute).with(
-        auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+        auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
         method: :post,
         path: "/folders",
         payload: {
@@ -43,7 +43,7 @@ describe Nylas::Folder do
     end
 
     it "sends a PUT when updating an existing folder" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
       json = JSON.dump(id: "folder_id", display_name: "All Mail", name: "all", account_id: "acc-234",
                        object: "folder")
       folder = described_class.from_json(json, api: api)
@@ -54,7 +54,7 @@ describe Nylas::Folder do
       )
 
       expect(api).to have_received(:execute).with(
-        auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+        auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
         method: :put,
         path: "/folders/folder_id",
         payload: {
@@ -65,7 +65,7 @@ describe Nylas::Folder do
     end
 
     it "sends a PUT when saving an existing folder" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
       json = JSON.dump(id: "folder_id", display_name: "All Mail", name: "all", account_id: "acc-234",
                        object: "folder")
       folder = described_class.from_json(json, api: api)
@@ -74,7 +74,7 @@ describe Nylas::Folder do
       folder.save
 
       expect(api).to have_received(:execute).with(
-        auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+        auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
         method: :put,
         path: "/folders/folder_id",
         payload: {
@@ -86,7 +86,7 @@ describe Nylas::Folder do
     end
 
     it "sends a DELETE when deleting an existing folder" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
       json = JSON.dump(id: "folder_id", display_name: "All Mail", name: "all", account_id: "acc-234",
                        object: "folder")
       folder = described_class.from_json(json, api: api)
@@ -95,7 +95,7 @@ describe Nylas::Folder do
       folder.destroy
 
       expect(api).to have_received(:execute).with(
-        auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+        auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
         method: :delete,
         path: "/folders/folder_id",
         payload: nil,

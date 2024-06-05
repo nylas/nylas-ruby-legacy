@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Syntactical sugar methods for some of the Event's filters
   # @see https://docs.nylas.com/reference#get-events
   class EventCollection < Collection

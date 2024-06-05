@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Nylas::CurrentAccount do
+describe NylasLegacy::CurrentAccount do
   it "is not filterable" do
     expect(described_class).not_to be_filterable
   end

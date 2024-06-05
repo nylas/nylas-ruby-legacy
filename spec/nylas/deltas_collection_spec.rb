@@ -2,13 +2,13 @@
 
 require "spec_helper"
 
-describe Nylas::DeltasCollection do
+describe NylasLegacy::DeltasCollection do
   describe "#find_each" do
     it "supports iterating until the responses are empty" do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       allow(api).to receive(:execute)
         .with(
-          auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+          auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
           path: "/delta",
           method: :get,
           query: { cursor: "1", limit: 100, offset: 0 },
@@ -16,7 +16,7 @@ describe Nylas::DeltasCollection do
         ).and_return(deltas: [{ object: "draft" }], cursor_start: "1", cursor_end: "2")
       allow(api).to receive(:execute)
         .with(
-          auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+          auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
           path: "/delta",
           method: :get,
           query: { cursor: "2", limit: 100, offset: 0 },
@@ -24,7 +24,7 @@ describe Nylas::DeltasCollection do
         ).and_return(deltas: [{ object: "message" }], cursor_start: "2", cursor_end: "3")
       allow(api).to receive(:execute)
         .with(
-          auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+          auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
           path: "/delta",
           method: :get,
           query: { cursor: "3", limit: 100, offset: 0 },
@@ -42,14 +42,14 @@ describe Nylas::DeltasCollection do
 
   describe "#latest" do
     it "retrieves the results for the cursor that comes from the latest_cursor end point" do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       allow(api).to receive(:execute)
         .with(path: "/delta/latest_cursor", method: :post)
         .and_return(cursor: "4")
 
       allow(api).to receive(:execute)
         .with(
-          auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+          auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
           path: "/delta",
           method: :get,
           query: { cursor: "4", limit: 100, offset: 0 },

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-describe Nylas::Calendar do
+describe NylasLegacy::Calendar do
   describe "JSONs" do
     let(:calendar) do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       data = {
         id: "cal-8766",
         object: "calendar",
@@ -63,7 +63,7 @@ describe Nylas::Calendar do
 
   describe "read on" do
     it "Serializes all the attributes into Ruby objects" do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       data = {
         id: "cal-8766",
         object: "calendar",
@@ -100,7 +100,7 @@ describe Nylas::Calendar do
 
   describe "#read_only?" do
     it "returns true when read_only attribute from API return true" do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       data = {
         read_only: true
       }
@@ -111,7 +111,7 @@ describe Nylas::Calendar do
     end
 
     it "returns false when read_only attribute from API return false" do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       data = {
         read_only: false
       }
@@ -124,7 +124,7 @@ describe Nylas::Calendar do
 
   describe "#primary?" do
     it "returns true when is_primary attribute from API return true" do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       data = {
         is_primary: true
       }
@@ -135,7 +135,7 @@ describe Nylas::Calendar do
     end
 
     it "returns false when is_primary attribute from API return false" do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       data = {
         is_primary: false
       }
@@ -148,8 +148,8 @@ describe Nylas::Calendar do
 
   describe "#events" do
     it "sets the constraints properly for getting child events" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
-      events = Nylas::EventCollection.new(model: Nylas::Event, api: api)
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
+      events = NylasLegacy::EventCollection.new(model: NylasLegacy::Event, api: api)
       allow(api).to receive(:events).and_return(events)
       data = {
         id: "cal-123"
@@ -158,12 +158,12 @@ describe Nylas::Calendar do
 
       event_collection = calendar.events
 
-      expect(event_collection).to be_a Nylas::EventCollection
+      expect(event_collection).to be_a NylasLegacy::EventCollection
 
       event_collection.execute
 
       expect(api).to have_received(:execute).with(
-        auth_method: Nylas::HttpClient::AuthMethod::BEARER,
+        auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER,
         headers: {},
         method: :get,
         path: "/events",

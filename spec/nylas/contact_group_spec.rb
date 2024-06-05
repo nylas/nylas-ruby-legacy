@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Nylas::ContactGroup do
+describe NylasLegacy::ContactGroup do
   it "is not filterable" do
     expect(described_class).not_to be_filterable
   end
@@ -31,7 +31,7 @@ describe Nylas::ContactGroup do
 
   describe ".from_json" do
     it "Deserializes all the attributes into Ruby objects" do
-      api = instance_double(Nylas::API)
+      api = instance_double(NylasLegacy::API)
       data = {
         id: "group-id",
         account_id: "account-id",

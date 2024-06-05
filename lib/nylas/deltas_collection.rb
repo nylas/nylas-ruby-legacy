@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Special collection for delta objects
   class DeltasCollection < Collection
     attr_accessor :deltas

@@ -38,7 +38,7 @@ module WebhookTrigger
   JOB_CANCELLED = "job.cancelled"
 end
 
-module Nylas
+module NylasLegacy
   # Represents a webhook attached to your application.
   # @see https://docs.nylas.com/reference#webhooks
   class Webhook

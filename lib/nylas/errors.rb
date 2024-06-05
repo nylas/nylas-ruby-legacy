@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   Error = Class.new(::StandardError)
 
   class ModelActionError < Error; end

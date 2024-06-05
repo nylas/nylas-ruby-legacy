@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby representation of a Nylas Send Grid verified status object
   # @see https://docs.nylas.com/reference#drafts
   class SendGridVerifiedStatus

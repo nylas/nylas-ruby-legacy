@@ -4,7 +4,7 @@ require "securerandom"
 require "faye/websocket"
 require "eventmachine"
 
-module Nylas
+module NylasLegacy
   # Class containing methods to spin up a developmental websocket connection to test webhooks
   class Tunnel
     # Open a webhook tunnel and register it with the Nylas API
@@ -13,7 +13,7 @@ module Nylas
     # 3. Creates a new webhook pointed at the forwarding service with the UUID as the path
     # When an event is received by the forwarding service, it will push directly to this websocket connection
     #
-    # @param api [Nylas::API] The configured Nylas API client
+    # @param api [NylasLegacy::API] The configured Nylas API client
     # @param config [Hash] Configuration for the webhook tunnel, including callback functions, region, and
     #   events to subscribe to
     def self.open_webhook_tunnel(api, config = {})
@@ -30,11 +30,11 @@ module Nylas
     end
 
     # Register callback with the Nylas forwarding service which will pass messages to the websocket
-    # @param api [Nylas::API] The configured Nylas API client
+    # @param api [NylasLegacy::API] The configured Nylas API client
     # @param callback_domain [String] The domain name of the callback
     # @param tunnel_path [String] The path to the tunnel
     # @param triggers [Array<WebhookTrigger>] The list of triggers to subscribe to
-    # @return [Nylas::Webhook] The webhook details response from the API
+    # @return [NylasLegacy::Webhook] The webhook details response from the API
     def self.register_webhook_callback(api, callback_domain, tunnel_path, triggers)
       callback_url = "https://#{callback_domain}/#{tunnel_path}"
 
@@ -47,7 +47,7 @@ module Nylas
 
     # Setup the websocket client and register the callbacks
     # @param websocket_domain [String] The domain of the websocket to connect to
-    # @param api [Nylas::API] The configured Nylas API client
+    # @param api [NylasLegacy::API] The configured Nylas API client
     # @param tunnel_id [String] The ID of the tunnel
     # @param region [String] The Nylas region to configure for
     # @param config [Hash] The object containing all the callback methods
@@ -111,7 +111,7 @@ module Nylas
 
     # Clean up and create the delta object
     # @param delta [Hash] The hash containing the delta attributes from the API
-    # @return [Nylas::Delta] The delta object
+    # @return [NylasLegacy::Delta] The delta object
     def self.merge_and_create_delta(delta)
       object_data = delta.delete("object_data")
       attributes = object_data.delete("attributes")

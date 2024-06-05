@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby representation of a Nylas Room Resource object
   # @see https://developer.nylas.com/docs/api/#tag--Room-Resources
   class RoomResource

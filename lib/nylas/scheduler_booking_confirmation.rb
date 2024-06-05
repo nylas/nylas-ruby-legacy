@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent the booking response returned from the Scheduler API
   class SchedulerBookingConfirmation
     include Model::Attributable

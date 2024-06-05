@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Additional methods for some of Calendar's other functionality
   # @see https://developer.nylas.com/docs/connectivity/calendar
   class JobStatusCollection < Collection

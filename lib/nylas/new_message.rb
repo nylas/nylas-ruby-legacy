@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Data structure for sending a message via the Nylas API
   class NewMessage
     include Model

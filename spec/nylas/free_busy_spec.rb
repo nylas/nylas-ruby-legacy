@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Nylas::FreeBusy do
+describe NylasLegacy::FreeBusy do
   describe "#email" do
     it "reads and write value for email" do
       email = "test@example.com"

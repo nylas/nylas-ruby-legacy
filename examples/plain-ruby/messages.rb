@@ -2,7 +2,7 @@ require_relative '../helpers'
 
 # An executable specification that demonstrates how to use the Nylas Ruby SDK to interact with the Nylas
 # Messages API. See https://docs.nylas.com/reference#messages for API documentation
-api = Nylas::API.new(app_id: ENV['NYLAS_APP_ID'], app_secret: ENV['NYLAS_APP_SECRET'],
+api = NylasLegacy::API.new(app_id: ENV['NYLAS_APP_ID'], app_secret: ENV['NYLAS_APP_SECRET'],
                      access_token: ENV['NYLAS_ACCESS_TOKEN'])
 
 # Retrieving a count of messages
@@ -27,7 +27,7 @@ demonstrate { { starred: reloaded_message.starred, unread: reloaded_message.unre
 demonstrate do
   begin
     api.messages.create
-  rescue Nylas::ModelNotCreatableError => e
+  rescue NylasLegacy::ModelNotCreatableError => e
     "#{e.class}: #{e.message}"
   end
 end
@@ -37,7 +37,7 @@ message = api.messages.first
 demonstrate do
   begin
     message.destroy
-  rescue Nylas::ModelNotDestroyableError => e
+  rescue NylasLegacy::ModelNotDestroyableError => e
     "#{e.class}: #{e.message}"
   end
 end

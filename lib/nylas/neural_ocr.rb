@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent a the Neural Optical Character Recognition object.
   # @see https://developer.nylas.com/docs/intelligence/optical-charecter-recognition/#ocr-response
   class NeuralOcr < File

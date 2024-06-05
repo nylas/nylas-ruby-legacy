@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Allows RSVPing to a particular event
   # @see https://docs.nylas.com/reference#rsvping-to-invitations
   class Rsvp

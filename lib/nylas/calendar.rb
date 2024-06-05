@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby bindings for the Nylas Calendar API
   # @see https://docs.nylas.com/reference#calendars
   class Calendar

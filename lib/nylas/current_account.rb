@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Ruby representation of the Nylas /account API
   # @see https://docs.nylas.com/reference#account
   class CurrentAccount

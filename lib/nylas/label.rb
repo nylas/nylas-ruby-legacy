@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent the Label Schema
   # @see https://docs.nylas.com/reference#labels
   class Label

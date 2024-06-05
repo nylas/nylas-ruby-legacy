@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Additional times email accounts are available
   # @see https://developer.nylas.com/docs/api/#post/calendars/availability
   class OpenHours

@@ -8,7 +8,7 @@ module GemConfig
     gem.name = name
     gem.files = Dir.glob("lib/{#{name}.rb,#{name}/**/*.rb}")
     gem.license = "MIT"
-    gem.version = Nylas::VERSION
+    gem.version = NylasLegacy::VERSION
     gem.platform = "ruby"
     gem.required_ruby_version = ">= 2.3"
     append_nylas_data(gem)

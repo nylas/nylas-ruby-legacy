@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Translates message headers into a Ruby object
   # @see https://docs.nylas.com/reference#section-message-views
   class MessageHeaders

@@ -2,7 +2,7 @@ require_relative '../helpers'
 
 # An executable specification that demonstrates how to use the Nylas Ruby SDK to send messages via the API
 # See https://docs.nylas.com/reference#sending
-api = Nylas::API.new(app_id: ENV['NYLAS_APP_ID'], app_secret: ENV['NYLAS_APP_SECRET'],
+api = NylasLegacy::API.new(app_id: ENV['NYLAS_APP_ID'], app_secret: ENV['NYLAS_APP_SECRET'],
                      access_token: ENV['NYLAS_ACCESS_TOKEN'])
 
 # Sending a message as a hash
@@ -15,7 +15,7 @@ end
 
 # Sending a message by instantiating a message instance
 demonstrate do
-  message = Nylas::NewMessage.new(to: [{ email: ENV.fetch('NYLAS_EXAMPLE_EMAIL', 'not-a-real-email@example.com'),
+  message = NylasLegacy::NewMessage.new(to: [{ email: ENV.fetch('NYLAS_EXAMPLE_EMAIL', 'not-a-real-email@example.com'),
                                          name: "An example recipient" }],
                                   subject: "you've got another mail!",
                                   body: "It's a really good another mail!", api: api)

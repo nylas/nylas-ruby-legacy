@@ -2,13 +2,13 @@
 
 require "spec_helper"
 
-describe Nylas::CalendarCollection do
+describe NylasLegacy::CalendarCollection do
   describe "availability" do
     it "makes a request to get single availability" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
 
-      calendar_collection = described_class.new(model: Nylas::Calendar, api: api)
-      free_busy = Nylas::FreeBusy.new(
+      calendar_collection = described_class.new(model: NylasLegacy::Calendar, api: api)
+      free_busy = NylasLegacy::FreeBusy.new(
         email: "swag@nylas.com",
         time_slots: [
           {
@@ -19,7 +19,7 @@ describe Nylas::CalendarCollection do
           }
         ]
       )
-      open_hours = Nylas::OpenHours.new(
+      open_hours = NylasLegacy::OpenHours.new(
         emails: ["swag@nylas.com"],
         days: [0],
         timezone: "America/Chicago",
@@ -80,8 +80,8 @@ describe Nylas::CalendarCollection do
     end
 
     it "optional params are omitted when getting single availability" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
-      calendar_collection = described_class.new(model: Nylas::Calendar, api: api)
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
+      calendar_collection = described_class.new(model: NylasLegacy::Calendar, api: api)
 
       calendar_collection.availability(
         duration_minutes: 30,
@@ -108,10 +108,10 @@ describe Nylas::CalendarCollection do
     end
 
     it "makes a request to get multiple availability" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
 
-      calendar_collection = described_class.new(model: Nylas::Calendar, api: api)
-      free_busy = Nylas::FreeBusy.new(
+      calendar_collection = described_class.new(model: NylasLegacy::Calendar, api: api)
+      free_busy = NylasLegacy::FreeBusy.new(
         email: "swag@nylas.com",
         time_slots: [
           {
@@ -122,7 +122,7 @@ describe Nylas::CalendarCollection do
           }
         ]
       )
-      open_hours = Nylas::OpenHours.new(
+      open_hours = NylasLegacy::OpenHours.new(
         emails: %w[one@example.com two@example.com three@example.com swag@nylas.com],
         days: [0],
         timezone: "America/Chicago",
@@ -179,8 +179,8 @@ describe Nylas::CalendarCollection do
     end
 
     it "optional params are omitted when getting multiple availability" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
-      calendar_collection = described_class.new(model: Nylas::Calendar, api: api)
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
+      calendar_collection = described_class.new(model: NylasLegacy::Calendar, api: api)
 
       calendar_collection.consecutive_availability(
         duration_minutes: 30,
@@ -209,10 +209,10 @@ describe Nylas::CalendarCollection do
 
   describe "verification" do
     it "throws an error if an email does not exist in open hours" do
-      api = instance_double(Nylas::API, execute: JSON.parse("{}"))
+      api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
 
-      calendar_collection = described_class.new(model: Nylas::Calendar, api: api)
-      free_busy = Nylas::FreeBusy.new(
+      calendar_collection = described_class.new(model: NylasLegacy::Calendar, api: api)
+      free_busy = NylasLegacy::FreeBusy.new(
         email: "one@example.com",
         time_slots: [
           {
@@ -223,7 +223,7 @@ describe Nylas::CalendarCollection do
           }
         ]
       )
-      open_hours = Nylas::OpenHours.new(
+      open_hours = NylasLegacy::OpenHours.new(
         emails: %w[one@example.com two@example.com three@example.com swag@nylas.com],
         days: [0],
         timezone: "America/Chicago",
@@ -248,8 +248,8 @@ describe Nylas::CalendarCollection do
   end
 
   it "throws an error if at least one of 'emails' or 'calendars' is not provided" do
-    api = instance_double(Nylas::API, execute: JSON.parse("{}"))
-    calendar_collection = described_class.new(model: Nylas::Calendar, api: api)
+    api = instance_double(NylasLegacy::API, execute: JSON.parse("{}"))
+    calendar_collection = described_class.new(model: NylasLegacy::Calendar, api: api)
 
     expect do
       calendar_collection.consecutive_availability(

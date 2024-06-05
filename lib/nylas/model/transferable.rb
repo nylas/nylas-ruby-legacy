@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   module Model
     # Allows definition of attributes, which should transfer to other dependent attributes
     module Transferable

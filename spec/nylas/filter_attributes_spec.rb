@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Nylas::FilterAttributes do
+describe NylasLegacy::FilterAttributes do
   describe "#check" do
     context "when `attributes` and `allowed_attributes` are similar" do
       it "does not raise any error" do

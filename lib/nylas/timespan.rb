@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent a Nylas Timespan.
   # @see https://docs.nylas.com/reference#section-timespan
   class Timespan

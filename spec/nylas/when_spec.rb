@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Nylas::When do
+describe NylasLegacy::When do
   describe "valid" do
     it "throws if a timezone is set to a non-IANA string" do
       when_obj = described_class.new(timezone: "Non IANA")

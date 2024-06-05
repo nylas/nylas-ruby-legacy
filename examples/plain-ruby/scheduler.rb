@@ -3,7 +3,7 @@ require_relative '../helpers'
 # An executable specification that demonstrates how to use the Nylas Ruby SDK to interact with the Nylas
 # Scheduler API.
 # See https://developer.nylas.com/docs/api/scheduler/#overview
-nylas = Nylas::API.new(app_id: ENV['NYLAS_APP_ID'], app_secret: ENV['NYLAS_APP_SECRET'],
+nylas = NylasLegacy::API.new(app_id: ENV['NYLAS_APP_ID'], app_secret: ENV['NYLAS_APP_SECRET'],
                      access_token: ENV['NYLAS_ACCESS_TOKEN'])
 
 # Create a scheduler page
@@ -32,14 +32,14 @@ demonstrate { example_scheduler.upload_image(content_type: "image/png", object_n
 # Get Google Availability
 begin
   demonstrate { nylas.scheduler.get_google_availability }
-rescue Nylas::Error => e
+rescue NylasLegacy::Error => e
   puts "#{e.class}: #{e.message}"
 end
 
 # Get Office 365 Availability
 begin
   demonstrate { nylas.scheduler.get_office_365_availability }
-rescue Nylas::Error => e
+rescue NylasLegacy::Error => e
   puts "#{e.class}: #{e.message}"
 end
 
@@ -51,7 +51,7 @@ available_timeslots = nylas.scheduler.get_available_time_slots(example_scheduler
 demonstrate { available_timeslots.inspect }
 
 # Book a timeslot
-booking_request = Nylas::SchedulerBookingRequest.new(
+booking_request = NylasLegacy::SchedulerBookingRequest.new(
   additional_values: {
     important: "true"
   },
@@ -70,7 +70,7 @@ demonstrate { nylas.scheduler.cancel_booking(example_scheduler.slug, booking_con
 # Confirm a booking (Expect an error because we already cancelled this meeting)
 begin
   demonstrate { nylas.scheduler.confirm_booking(example_scheduler.slug, booking_confirmation.edit_hash) }
-rescue Nylas::Error => e
+rescue NylasLegacy::Error => e
   puts "#{e.class}: #{e.message}"
 end
 

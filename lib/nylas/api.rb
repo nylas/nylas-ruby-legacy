@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Methods to retrieve data from the Nylas API as Ruby objects
   class API
     attr_accessor :client
@@ -16,7 +16,7 @@ module Nylas
     # @param access_token [String] (Optional) Your users access token.
     # @param api_server [String] (Optional) Which Nylas API Server to connect to. Only change this if
     #                            you're using a self-hosted Nylas instance.
-    # @return [Nylas::API]
+    # @return [NylasLegacy::API]
     def initialize(client: nil, app_id: nil, app_secret: nil, access_token: nil,
                    api_server: "https://api.nylas.com")
       self.client = client || HttpClient.new(app_id: app_id, app_secret: app_secret,

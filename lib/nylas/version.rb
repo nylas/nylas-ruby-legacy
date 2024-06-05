@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   VERSION = "5.17.0"
 end

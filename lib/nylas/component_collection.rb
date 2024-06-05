@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Additional configuration for the Component CRUD API
   class ComponentCollection < Collection
     def resources_path

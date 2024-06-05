@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent a the Neural Sentiment Analysis object.
   # @see https://developer.nylas.com/docs/intelligence/sentiment-analysis/#sentiment-analysis-response-message
   class NeuralSentimentAnalysis

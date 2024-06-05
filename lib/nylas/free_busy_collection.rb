@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Helper to get and build `FreeBusy` objects
   class FreeBusyCollection
     extend Forwardable

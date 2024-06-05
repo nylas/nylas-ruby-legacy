@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Allows sending of email with nylas from an rfc822 compatible string
   class RawMessage
     attr_accessor :api, :mime_compatible_string

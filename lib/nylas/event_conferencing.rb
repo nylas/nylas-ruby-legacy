@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Structure to represent the Event Conferencing object
   # @see https://developer.nylas.com/docs/connectivity/calendar/conference-sync-beta
   class EventConferencing

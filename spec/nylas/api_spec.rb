@@ -4,12 +4,12 @@ require "spec_helper"
 
 # This spec is the only one that should have any webmock stuff going on, everything else should use the
 # FakeAPI to see what requests were made and what they included.
-describe Nylas::API do
+describe NylasLegacy::API do
   describe "#detect_provider" do
     # tests the detect_providr method
     it "returns the provider" do
       url = "https://api.nylas.com/connect/detect-provider"
-      client = Nylas::HttpClient.new(app_id: "not-real", app_secret: "also-not-real")
+      client = NylasLegacy::HttpClient.new(app_id: "not-real", app_secret: "also-not-real")
       data = {
         "client_id" => "not-real",
         "client_secret" => "also-not-real",
@@ -40,7 +40,7 @@ describe Nylas::API do
 
   describe "#exchange_code_for_token" do
     it "retrieves oauth token with code" do
-      client = Nylas::HttpClient.new(app_id: "fake-app", app_secret: "fake-secret")
+      client = NylasLegacy::HttpClient.new(app_id: "fake-app", app_secret: "fake-secret")
       data = {
         "client_id" => "fake-app",
         "client_secret" => "fake-secret",
@@ -61,7 +61,7 @@ describe Nylas::API do
     end
 
     it "retrieves full response from the server" do
-      client = Nylas::HttpClient.new(app_id: "fake-app", app_secret: "fake-secret")
+      client = NylasLegacy::HttpClient.new(app_id: "fake-app", app_secret: "fake-secret")
       data = {
         "client_id" => "fake-app",
         "client_secret" => "fake-secret",
@@ -169,19 +169,19 @@ describe Nylas::API do
   end
 
   describe "#contact_groups" do
-    it "returns Nylas::Collection for contact groups" do
-      client = instance_double("Nylas::HttpClient")
+    it "returns NylasLegacy::Collection for contact groups" do
+      client = instance_double("NylasLegacy::HttpClient")
       api = described_class.new(client: client)
 
       result = api.contact_groups
 
-      expect(result).to be_a(Nylas::Collection)
+      expect(result).to be_a(NylasLegacy::Collection)
     end
   end
 
   describe "#current_account" do
     it "retrieves the account for the current OAuth Access Token" do
-      client = Nylas::HttpClient.new(app_id: "not-real", app_secret: "also-not-real",
+      client = NylasLegacy::HttpClient.new(app_id: "not-real", app_secret: "also-not-real",
                                      access_token: "seriously-unreal")
       allow(client).to receive(:execute).with(method: :get, path: "/account").and_return(id: 1234)
       api = described_class.new(client: client)
@@ -189,26 +189,26 @@ describe Nylas::API do
     end
 
     it "raises an exception if there is not an access token set" do
-      client = Nylas::HttpClient.new(app_id: "not-real", app_secret: "also-not-real")
+      client = NylasLegacy::HttpClient.new(app_id: "not-real", app_secret: "also-not-real")
       allow(client).to receive(:execute).with(method: :get, path: "/account").and_return(id: 1234)
       api = described_class.new(client: client)
-      expect { api.current_account.id }.to raise_error Nylas::NoAuthToken,
+      expect { api.current_account.id }.to raise_error NylasLegacy::NoAuthToken,
                                                        "No access token was provided and the " \
                                                        "current_account method requires one"
     end
 
     it "sets X-Nylas-Client-Id header" do
-      client = Nylas::HttpClient.new(app_id: "not-real", app_secret: "also-not-real")
+      client = NylasLegacy::HttpClient.new(app_id: "not-real", app_secret: "also-not-real")
       expect(client.default_headers).to include("X-Nylas-Client-Id" => "not-real")
     end
   end
 
   describe "#free_busy" do
-    it "returns `Nylas::FreeBusyCollection` for free busy details" do
+    it "returns `NylasLegacy::FreeBusyCollection` for free busy details" do
       emails = ["test@example.com", "anothertest@example.com"]
       start_time = 1_609_439_400
       end_time = 1_640_975_400
-      client = Nylas::HttpClient.new(
+      client = NylasLegacy::HttpClient.new(
         app_id: "not-real",
         app_secret: "also-not-real",
         access_token: "seriously-unreal"
@@ -244,7 +244,7 @@ describe Nylas::API do
         end_time: Time.at(end_time)
       )
 
-      expect(result).to be_a(Nylas::FreeBusyCollection)
+      expect(result).to be_a(NylasLegacy::FreeBusyCollection)
       free_busy = result.last
       expect(free_busy.object).to eq("free_busy")
       expect(free_busy.email).to eq("test@example.com")
@@ -258,7 +258,7 @@ describe Nylas::API do
 
   describe "application details" do
     it "gets the application details" do
-      client = Nylas::HttpClient.new(
+      client = NylasLegacy::HttpClient.new(
         app_id: "not-real",
         app_secret: "also-not-real"
       )
@@ -277,7 +277,7 @@ describe Nylas::API do
 
       app_details = api.application_details
 
-      expect(app_details).to be_a(Nylas::ApplicationDetail)
+      expect(app_details).to be_a(NylasLegacy::ApplicationDetail)
       expect(app_details.application_name).to eq("My New App Name")
       expect(app_details.icon_url).to eq("http://localhost/icon.png")
       expect(app_details.redirect_uris).to eq(%w[http://localhost/callback])
@@ -289,11 +289,11 @@ describe Nylas::API do
         icon_url: "http://localhost/updated_icon.png",
         redirect_uris: %w[http://localhost/callback http://localhost/updated]
       }
-      app_details = Nylas::ApplicationDetail.new
+      app_details = NylasLegacy::ApplicationDetail.new
       app_details.application_name = "Updated App Name"
       app_details.icon_url = "http://localhost/updated_icon.png"
       app_details.redirect_uris = %w[http://localhost/callback http://localhost/updated]
-      client = Nylas::HttpClient.new(
+      client = NylasLegacy::HttpClient.new(
         app_id: "not-real",
         app_secret: "also-not-real"
       )
@@ -307,7 +307,7 @@ describe Nylas::API do
 
       updated_app_details = api.update_application_details(app_details)
 
-      expect(updated_app_details).to be_a(Nylas::ApplicationDetail)
+      expect(updated_app_details).to be_a(NylasLegacy::ApplicationDetail)
     end
   end
 

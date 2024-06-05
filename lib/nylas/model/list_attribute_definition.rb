@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   module Model
     # Allows models to have an attribute which is a lists of another type of thing
     class ListAttributeDefinition

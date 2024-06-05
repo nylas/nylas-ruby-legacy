@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Nylas
+module NylasLegacy
   # Capacity values for a timeslot
   # @see https://docs.nylas.com/reference#calendars-free-busy
   class TimeSlotCapacity
