@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "./lib/nylas/version"
+require "./lib/nylas-legacy/version"
 
 # Consistently apply nylas' standard gem data across gems
 module GemConfig

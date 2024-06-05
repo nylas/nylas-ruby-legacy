@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'nylas'
+require 'nylas-legacy'
 
 get '/webhook-event-received' do
   params[:challenge]

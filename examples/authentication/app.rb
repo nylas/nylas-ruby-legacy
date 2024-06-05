@@ -1,5 +1,5 @@
 require 'pry'
-require 'nylas'
+require 'nylas-legacy'
 require 'sinatra'
 require 'omniauth'
 require 'omniauth-google-oauth2'

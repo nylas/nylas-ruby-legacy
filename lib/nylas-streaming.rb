@@ -2,7 +2,7 @@
 
 require "yajl"
 require "em-http"
-require "nylas"
+require "nylas-legacy"
 
 module NylasLegacy
   # Provides methods to work with the Nylas Streaming Deltas API
