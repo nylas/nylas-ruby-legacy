@@ -81,9 +81,9 @@ All of the functionality of the Nylas Communications Platform is available throu
 
 
 ```ruby
-require 'nylas'
+require 'nylas-legacy'
 
-nylas = Nylas::API.new(
+nylas = NylasLegacy::API.new(
     app_id: CLIENT_ID,
     app_secret: CLIENT_SECRET,
     access_token: ACCESS_TOKEN

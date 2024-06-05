@@ -24,24 +24,24 @@ Metrics/BlockLength:
 Metrics/ParameterLists:
   Max: 8
   Exclude:
-    - "lib/nylas/calendar_collection.rb"
+    - "lib/nylas-legacy/calendar_collection.rb"
 
 Metrics/MethodLength:
   Exclude:
-    - "lib/nylas/calendar_collection.rb"
-    - "lib/nylas/services/tunnel.rb"
+    - "lib/nylas-legacy/calendar_collection.rb"
+    - "lib/nylas-legacy/services/tunnel.rb"
 
 Metrics/AbcSize:
   Exclude:
-    - "lib/nylas/services/tunnel.rb"
+    - "lib/nylas-legacy/services/tunnel.rb"
 
 Metrics/ModuleLength:
   Exclude:
-    - "lib/nylas/model.rb"
+    - "lib/nylas-legacy/model.rb"
 
 Naming/FileName:
   Exclude:
-    - "lib/nylas-streaming.rb"
+    - "lib/nylas-legacy-streaming.rb"
 
 Metrics/ClassLength:
   Enabled: false

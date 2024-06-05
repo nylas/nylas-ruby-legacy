@@ -2,13 +2,13 @@
 
 require "yajl"
 require "em-http"
-require "nylas"
+require "nylas-legacy"
 
-module Nylas
+module NylasLegacy
   # Provides methods to work with the Nylas Streaming Deltas API
   # @see https://docs.nylas.com/reference#streaming-delta-updates
   module Streaming
-    # @see Nylas::Streaming::DeltaStream#initialize
+    # @see NylasLegacy::Streaming::DeltaStream#initialize
     def self.deltas(**kwargs, &callback)
       DeltaStream.new(**kwargs).stream(&callback)
     end
@@ -19,7 +19,7 @@ module Nylas
                     :connect_timeout, :inactivity_timeout
 
       # @param cursor [String] Cursor to start listening for changes on
-      # @param api [Nylas::API]
+      # @param api [NylasLegacy::API]
       # @param expanded [Boolean] Expands threads and messages
       # @param exclude_types [Array<String>] List of Object types *not* to include in the stream
       # @param include_types [Array<String>] List of Object types to exclusively include in the stream
@@ -40,8 +40,8 @@ module Nylas
         parser.on_parse_complete = lambda do |data|
           begin
             yield(Types.registry[:delta].cast(data.merge(api: api)))
-          rescue Nylas::Error => e
-            Nylas::Logging.logger.error(e)
+          rescue NylasLegacy::Error => e
+            NylasLegacy::Logging.logger.error(e)
             raise e
           end
         end
@@ -67,7 +67,7 @@ module Nylas
       end
 
       def http_error_handler(client)
-        raise Nylas::Error, client.error
+        raise NylasLegacy::Error, client.error
       end
 
       def parser

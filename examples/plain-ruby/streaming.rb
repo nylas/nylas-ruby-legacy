@@ -16,9 +16,9 @@ def interactive_stream(include_types: [], exclude_types: [])
     end
     Signal.trap("TERM") { EventMachine.stop }
 
-    api = Nylas::API.new(app_id: ENV['NYLAS_APP_ID'], app_secret: ENV['NYLAS_APP_SECRET'],
+    api = NylasLegacy::API.new(app_id: ENV['NYLAS_APP_ID'], app_secret: ENV['NYLAS_APP_SECRET'],
                          access_token: ENV['NYLAS_ACCESS_TOKEN'])
-    Nylas::Streaming.deltas(api: api, cursor: ENV['NYLAS_PREVIOUS_CURSOR'],
+    NylasLegacy::Streaming.deltas(api: api, cursor: ENV['NYLAS_PREVIOUS_CURSOR'],
                             include_types: include_types, exclude_types: exclude_types) do |delta|
       puts "#{delta.event} of #{delta.object} #{delta.model.id} as a #{delta.class}"
     end

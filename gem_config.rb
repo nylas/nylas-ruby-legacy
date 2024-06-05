@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "./lib/nylas/version"
+require "./lib/nylas-legacy/version"
 
 # Consistently apply nylas' standard gem data across gems
 module GemConfig
@@ -8,7 +8,7 @@ module GemConfig
     gem.name = name
     gem.files = Dir.glob("lib/{#{name}.rb,#{name}/**/*.rb}")
     gem.license = "MIT"
-    gem.version = Nylas::VERSION
+    gem.version = NylasLegacy::VERSION
     gem.platform = "ruby"
     gem.required_ruby_version = ">= 2.3"
     append_nylas_data(gem)
@@ -35,12 +35,19 @@ module GemConfig
   end
 
   def self.dev_dependencies
-    [["bundler", ">= 1.3.0"],
-     ["yard", "~> 0.9.0"],
-     ["awesome_print", "~> 1.0"],
-     ["rubocop", "~> 1.24.1"],
-     ["rubocop-rspec", "~> 2.7.0"],
-     ["overcommit", "~> 0.41"]] + testing_and_debugging_dependencies
+    [
+      ["bundler", ">= 1.3.0"],
+      ["yard", "~> 0.9.0"],
+      ["awesome_print", "~> 1.0"],
+      ["rubocop", "~> 1.24.1"],
+      ["rubocop-rspec", "~> 2.7.0"],
+      ["overcommit", "~> 0.41"],
+      ["eventmachine", "~> 1.2.7"],
+      ["faye-websocket", "~> 0.11.1"],
+      ["rest-client", ">= 2.0", "< 3.0"],
+      ["tzinfo", "~> 2.0.5"],
+      ["yajl-ruby", "~> 1.2", ">= 1.2.1"]
+    ] + testing_and_debugging_dependencies
   end
 
   def self.testing_and_debugging_dependencies

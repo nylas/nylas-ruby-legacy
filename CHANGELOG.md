@@ -1,6 +1,7 @@
 # Changelog
 
-### Unreleased
+### v5.18.0 / 2024-06-05
+* Released mirror package for API v2 supported Nylas Ruby SDK called 'nylas-legacy'
 * Add support for count on message/thread search
 * Add support for detect provider endpoint
 * Add accept header by default

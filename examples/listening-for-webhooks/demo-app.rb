@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'nylas'
+require 'nylas-legacy'
 
 get '/webhook-event-received' do
   params[:challenge]
@@ -10,7 +10,7 @@ post '/webhook-event-received' do
   json = request.body.read
   logger.info ["json", json]
   data = JSON.parse(json, symbolize_names: true)
-  deltas = Nylas::Deltas.new(**data)
+  deltas = NylasLegacy::Deltas.new(**data)
   deltas.map do |delta|
     logger.info ["delta", delta.to_h]
     logger.info ["instance", delta.instance.class, delta.instance.to_h]

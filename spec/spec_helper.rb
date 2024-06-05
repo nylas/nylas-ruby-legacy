@@ -6,7 +6,7 @@ SimpleCov.start
 require "simplecov-cobertura"
 SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 
-require "nylas"
+require "nylas-legacy"
 require "pry"
 require "webmock/rspec"
 require "rspec-json_matcher"
@@ -14,7 +14,7 @@ require "rspec-json_matcher"
 RSpec.configuration.include RSpec::JsonMatcher
 
 class FakeAPI
-  def execute(method:, path:, payload: nil, query: {}, auth_method: Nylas::HttpClient::AuthMethod::BEARER)
+  def execute(method:, path:, payload: nil, query: {}, auth_method: NylasLegacy::HttpClient::AuthMethod::BEARER)
     requests.push(method: method, path: path, payload: payload, query: query, auth_method: auth_method)
   end
 
@@ -30,7 +30,7 @@ end
 # Illustrates all the types and such a model can be built out of. Used for testing the generic Model
 # functionality without conflating it with actual Models
 class FullModel
-  include Nylas::Model
+  include NylasLegacy::Model
   self.creatable = true
   self.showable = true
   self.listable = true
@@ -64,7 +64,7 @@ class FullModel
 end
 
 class NotCreatableModel
-  include Nylas::Model
+  include NylasLegacy::Model
   self.resources_path = "/not_creatable_collection"
 
   attribute :id, :string
@@ -82,7 +82,7 @@ class NotCreatableModel
 end
 
 class NotUpdatableModel
-  include Nylas::Model
+  include NylasLegacy::Model
   self.resources_path = "/not_updatable_collection"
 
   attribute :id, :string
@@ -100,7 +100,7 @@ class NotUpdatableModel
 end
 
 class NonFilterableModel < FullModel
-  include Nylas::Model
+  include NylasLegacy::Model
   self.resources_path = "/non_filterable_collection"
 
   attribute :id, :string
